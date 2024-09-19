@@ -8,6 +8,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.Instant;
+
+import com.exemploweb.entities.enuns.OrderStatus;
+
 import java.io.Serializable;
 
 @Entity
@@ -25,11 +28,14 @@ public class Order implements Serializable {
     @JoinColumn(name = "client_id")
     private User client;
 
+    private Integer status;
+
     public Order() {}
 
-    public Order(Long id, Instant moment, User client) {
+    public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
         this.id = id;
         this.moment = moment;
+        setOrderStatus(orderStatus);
         this.client = client;
     }
 
@@ -43,6 +49,22 @@ public class Order implements Serializable {
 
     public User getClient() {
         return client;
+    }
+    
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(status);
+    }
+
+    /**
+     * Internally status is of type Integer but externally
+     * it is an Enum, the conversion between types occours
+     * thanks to the get and setOrderStatus methods. 
+     * @param orderStatus
+     */
+    public void setOrderStatus(OrderStatus orderStatus) {
+        if(orderStatus != null) {
+            this.status = orderStatus.getCode();
+        }
     }
 
     @Override
