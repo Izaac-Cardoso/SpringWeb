@@ -6,78 +6,90 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_user")
 public class User implements Serializable {
 
-private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
-private String name;
-private String email;
-private String phone;
-private String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String email;
+    private String phone;
+    private String password;
 
-public User() {}
+    @JsonIgnore
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
-public User(Long id, String name, String email, String phone, String password) {
-    this.id = id;
-    this.name = name;
-    this.email = email;
-    this.phone = phone;
-    this.password = password;
-}
+    public User() {}
 
-public String getName() {
-    return name;
-}
+    public User(Long id, String name, String email, String phone, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
 
-public String getEmail() {
-    return email;
-}
+    public String getName() {
+        return name;
+    }
 
-public String getPhone() {
-    return phone;
-}
+    public String getEmail() {
+        return email;
+    }
 
-public String getPassword() {
-    return password;
-}
+    public String getPhone() {
+        return phone;
+    }
 
-public long getId() {
-    return id;
-}
+    public String getPassword() {
+        return password;
+    }
 
-@Override
-public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + (int) (id ^ (id >>> 32));
-    return result;
-}
+    public long getId() {
+        return id;
+    }
 
-@Override
-public boolean equals(Object obj) {
-    if (this == obj)
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (int) (id ^ (id >>> 32));
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        User other = (User) obj;
+        if (id != other.id)
+            return false;
         return true;
-    if (obj == null)
-        return false;
-    if (getClass() != obj.getClass())
-        return false;
-    User other = (User) obj;
-    if (id != other.id)
-        return false;
-    return true;
-}
+    }
 
-@Override
-public String toString() {
-    return "User [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + "]";
-}
-
-
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + "]";
+    }
 }
