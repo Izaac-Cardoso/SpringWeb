@@ -8,29 +8,29 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.exemploweb.entities.User;
-import com.exemploweb.services.UserService;
+import com.exemploweb.entities.Product;
+import com.exemploweb.services.ProductService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@RequestMapping(value = "/user")
-public class UserResource {
+@RequestMapping(value = "/product")
+public class ProductResource {
 
     @Autowired
-    private UserService service;
+    private ProductService product;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        List<User> list = service.findAll();
+    public ResponseEntity<List<Product>> findAll() {
+        List<Product> list = product.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Optional<User>> findById(@PathVariable Long id) {
-        Optional<User> u = service.findById(id);
-        return ResponseEntity.ok().body(u);
+    public ResponseEntity<Optional<Product>> findById(@PathVariable Long id) {
+        Optional<Product> p = product.findById(id);
+        return ResponseEntity.ok().body(p);
     }
 }

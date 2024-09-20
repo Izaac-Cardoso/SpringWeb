@@ -1,11 +1,11 @@
-package com.exemploweb.userServices;
+package com.exemploweb.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.exemploweb.userRepositories.OrderRepository;
-
 import com.exemploweb.entities.Order;
+import com.exemploweb.repositories.OrderRepository;
+
 import java.util.List;
 import java.util.Optional;
 
