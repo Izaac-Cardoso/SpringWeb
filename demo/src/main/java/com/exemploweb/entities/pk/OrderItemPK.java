@@ -12,7 +12,8 @@ import java.io.Serializable;
 /**
  * PK stands for Primary Key, it's a class to represent a composite id.
  * The class's attributes (which can be a simple variable or a class instance)
- * form the association for a composite key.
+ * form the association for a composite key. The annotation @Embeddable 
+ * marks the class as a composite id for JPA.
  */
 
 @Embeddable

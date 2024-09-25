@@ -14,7 +14,7 @@ public class SpringdemoApplication {
  * CHECK LIST OF THINGS TO STUDY
  * Spring MVC architecture 
  * Annotations 
- * How to map objects
+ * How to map objects {oneToMany, ManyToOne, ManyToMany}
  */
 
 }
