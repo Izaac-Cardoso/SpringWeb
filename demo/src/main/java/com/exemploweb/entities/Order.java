@@ -78,6 +78,14 @@ public class Order implements Serializable {
         this.payment = payment;
     }
 
+    public Double getTotal() {
+        Double sum = 0.0;
+        for(OrderItem o : items) {
+            sum += o.getSubTotal();
+        }
+        return sum;
+    }
+
     /**
      * Internally status is of type Integer but externally
      * it is an Enum, the conversion between types occours

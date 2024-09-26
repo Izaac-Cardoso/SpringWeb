@@ -23,6 +23,10 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public User inseret(User user) {
+        return userRepository.save(user);
+    }
+
     /**
      * public User findById(Long id) {
      *      Optional obj = userRepository.findId(id);
