@@ -23,8 +23,12 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public User inseret(User user) {
+    public User insert(User user) {
         return userRepository.save(user);
+    }
+
+    public void delete(Long id) {
+        userRepository.deleteById(id);
     }
 
     /**
